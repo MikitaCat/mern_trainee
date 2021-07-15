@@ -1,4 +1,5 @@
 {
     "port": 7000,
+    "jwtSecret": "some secret string for my app",
     "mongoUri": "mongodb+srv://Nikita:rootroot@cluster0.nceu7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 }
