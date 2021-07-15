@@ -1,0 +1,4 @@
+{
+    "port": 7000,
+    "mongoUri": "mongodb+srv://Nikita:rootroot@cluster0.nceu7.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+}
