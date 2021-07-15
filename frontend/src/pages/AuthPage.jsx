@@ -1,15 +1,32 @@
 import React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useHttp } from '../hooks/http.hook';
+import { useMessage } from '../hooks/message.hook';
 
 export const AuthPage = () => {
+  const message = useMessage();
+  const { loading, request, error, clearErrors } = useHttp();
   const [form, setForm] = useState({
     email: '',
     password: '',
   });
 
+  useEffect(() => {
+    message(error);
+    clearErrors();
+  }, [error, message, clearErrors]);
+
   //funcion for input treatment
   const changeHandler = (event) => {
-    setForm({ ...form, [event.target.name]: [event.target.value] });
+    setForm({ ...form, [event.target.name]: event.target.value });
+  };
+
+  //Registration function
+  const registerHandler = async () => {
+    try {
+      const data = await request('/api/auth/register', 'POST', { ...form });
+      message(data.message);
+    } catch (e) {}
   };
 
   return (
@@ -47,10 +64,12 @@ export const AuthPage = () => {
             </div>
           </div>
           <div className="card-action">
-            <button className="btn red lighten-3" style={{ marginRight: 10 }}>
+            <button className="btn red lighten-3" disabled={loading} style={{ marginRight: 10 }}>
               Sing In
             </button>
-            <button className="btn red lighten-2">Log in</button>
+            <button className="btn red lighten-2" onClick={registerHandler} disabled={loading}>
+              Registration
+            </button>
           </div>
         </div>
       </div>
