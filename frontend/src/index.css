@@ -1,1 +1,11 @@
-@import "~materialize-css/dist/css/materialize.min.css";
+@import '~materialize-css/dist/css/materialize.min.css';
+
+input.color-input {
+  border-bottom: solid 1px #fff !important;
+  box-shadow: 0 1px 0 0 0 #fff !important;
+  color: #fff;
+}
+
+input.color-input + label {
+  color: #fff !important;
+}
