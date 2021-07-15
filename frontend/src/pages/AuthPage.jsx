@@ -1,6 +1,17 @@
 import React from 'react';
+import { useState } from 'react';
 
 export const AuthPage = () => {
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+  });
+
+  //funcion for input treatment
+  const changeHandler = (event) => {
+    setForm({ ...form, [event.target.name]: [event.target.value] });
+  };
+
   return (
     <div className="row">
       <div className="col s6 offset-s3">
@@ -17,6 +28,7 @@ export const AuthPage = () => {
                   id="email"
                   type="text"
                   name="email"
+                  onChange={changeHandler}
                 />
                 <label htmlFor="email">Email</label>
               </div>
@@ -28,6 +40,7 @@ export const AuthPage = () => {
                   type="password"
                   name="password"
                   className="color-input"
+                  onChange={changeHandler}
                 />
                 <label htmlFor="password">Password</label>
               </div>
